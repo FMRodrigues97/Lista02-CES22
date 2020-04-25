@@ -5,7 +5,7 @@ wn = turtle.Screen()
 wn.title('Tess becomes a traffic light')
 wn.bgcolor('lightgreen')
 tess = turtle.Turtle()
-
+raio = 3
 
 def draw_housing():
     """ Draw a nice housing to hold the traffic lights """
@@ -70,16 +70,26 @@ def mudar_para_azul():
     tess.fillcolor('blue')
 
 
-def aumentar_largura():
-    largura = tess.pensize()
-    if largura <= 20:
-        tess.pensize(largura + 1)
+def tonalidade_clara():
+    wn.bgcolor('lightgreen')
 
 
-def diminuir_largura():
-    largura = tess.pensize()
-    if largura >= 1:
-        tess.pensize(largura - 1)
+def tonalidade_escura():
+    wn.bgcolor('darkgreen')
+
+
+def decrease_size():
+    global raio
+    if raio >= 2:
+        raio -= 1
+        tess.shapesize(raio)
+
+
+def increase_size():
+    global raio
+    if raio <= 19:
+        raio += 1
+        tess.shapesize(raio)
 
 
 # Bind the event handler to the space key.
@@ -90,9 +100,13 @@ wn.onkey(mudar_para_vermelho, 'r')
 wn.onkey(mudar_para_verde, 'g')
 wn.onkey(mudar_para_azul, 'b')
 
-# Pressionando as teclas "+" ou "-" aumenta ou diminui, respectivamente, a largura da linha.
-wn.onkey(aumentar_largura, '+')
-wn.onkey(diminuir_largura, '-')
+# Pressionando as teclas "+" ou "-" aumenta ou diminui, respectivamente, o raio do círculo.
+wn.onkeypress(increase_size, "plus")
+wn.onkeypress(decrease_size, "minus")
+
+# Pressionando as teclas "d" ou "l" aumenta ou diminui a tonalidade de verde do fundo.
+wn.onkey(tonalidade_clara, 'l')
+wn.onkey(tonalidade_escura, 'd')
 
 wn.listen()  # Listen for events
 wn.mainloop()
