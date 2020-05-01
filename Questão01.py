@@ -6,6 +6,8 @@ wn.title('Tess becomes a traffic light')
 wn.bgcolor('lightgreen')
 tess = turtle.Turtle()
 raio = 3
+pen_size = 3
+
 
 def draw_housing():
     """ Draw a nice housing to hold the traffic lights """
@@ -78,18 +80,18 @@ def tonalidade_escura():
     wn.bgcolor('darkgreen')
 
 
-def decrease_size():
-    global raio
-    if raio >= 2:
-        raio -= 1
-        tess.shapesize(raio)
+def decrease_width():
+    global pen_size
+    if pen_size >= 2:
+        pen_size -= 1
+        tess.shapesize(outline=pen_size)
 
 
-def increase_size():
-    global raio
-    if raio <= 19:
-        raio += 1
-        tess.shapesize(raio)
+def increase_width():
+    global pen_size
+    if pen_size <= 19:
+        pen_size += 1
+        tess.shapesize(outline=pen_size)
 
 
 # Bind the event handler to the space key.
@@ -101,8 +103,8 @@ wn.onkey(mudar_para_verde, 'g')
 wn.onkey(mudar_para_azul, 'b')
 
 # Pressionando as teclas "+" ou "-" aumenta ou diminui, respectivamente, o raio do círculo.
-wn.onkeypress(increase_size, "plus")
-wn.onkeypress(decrease_size, "minus")
+wn.onkeypress(increase_width, "plus")
+wn.onkeypress(decrease_width, "minus")
 
 # Pressionando as teclas "d" ou "l" aumenta ou diminui a tonalidade de verde do fundo.
 wn.onkey(tonalidade_clara, 'l')
